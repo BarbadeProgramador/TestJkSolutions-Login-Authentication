@@ -6,23 +6,40 @@ const usersAutorized = { user: "jkTest2025@gmail.com", password: "1234567" };
 
 export async function Auth(username, password) {
     try {
-        // Validacion de datos 
-        await dataValidation(username ,password);
+        // Validación de datos 
+        let result = await dataValidation(username, password);
 
-        // Simulacion de una peticion de autenticacion
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if (username === usersAutorized.user && password === usersAutorized.password) {
-                    localStorageService(username, password);
-                    resolve("✅ Autenticación exitosa");
-                } else {
-                    reject("❌ Usuario o contraseña incorrectos");
+        if (result) {
+            // Mostrar el loading
+            Swal.fire({
+                title: "Autenticando...",
+                text: "Por favor, espera",
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
                 }
-            }, 5000);
-        });
+            });
+
+            // Simulación de una petición de autenticación
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (username === usersAutorized.user && password === usersAutorized.password) {
+                        localStorageService(username, password);
+                        
+                        // Cierra el loading y muestra éxito
+                        Swal.fire("Éxito", "✅ Autenticación exitosa", "success");
+                        resolve("✅ Autenticación exitosa");
+                    } else {
+                        // Cierra el loading y muestra error
+                        Swal.fire("Error", "❌ Usuario o contraseña incorrectos", "error");
+                        reject("❌ Usuario o contraseña incorrectos");
+                    }
+                }, 5000);
+            });
+        }
 
     } catch (error) {
         console.error(error);
-        return Promise.reject(error); 
+        return Promise.reject(error);
     }
 }

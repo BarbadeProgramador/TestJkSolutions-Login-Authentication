@@ -1,18 +1,41 @@
 export async function dataValidation(user, password) {
-    // Expresión regular para validar email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!user) {
-        throw new Error("El usuario es obligatorio");
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "El usuario es obligatorio",
+        });
+        return false;
     }
+
     if (!emailRegex.test(user)) {
-        throw new Error("El usuario debe ser un correo electrónico válido");
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "El usuario debe ser un correo electrónico válido",
+        });
+        return false;
     }
+
     if (!password) {
-        throw new Error("La contraseña es obligatoria");
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "La contraseña es obligatoria",
+        });
+        return false;
     }
+
     if (password.length < 6) {
-        throw new Error("La contraseña debe tener más de 6 caracteres");
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "La contraseña debe tener más de 6 caracteres",
+        });
+        return false;
     }
-    return "✅ Validación exitosa";
+
+    return true;
 }

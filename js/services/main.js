@@ -8,12 +8,12 @@ form.addEventListener("submit", async function (event) {
 
     let user = document.getElementById("usuario").value;
     let password = document.getElementById("contraseña").value;
-
     try {
         let response = await Auth(user, password);
-        alert(response);
-        window.location.href = "pages/landing.html";
+        if(response){
+            window.location.href = "pages/landing.html";
+        }
     } catch (error) {
-        alert(error);
+        console.log(error);
     }
 });
