@@ -26,11 +26,9 @@ export async function Auth(username, password) {
                     if (username === usersAutorized.user && password === usersAutorized.password) {
                         localStorageService(username, password);
                         
-                        // Cierra el loading y muestra éxito
                         Swal.fire("Éxito", "✅ Autenticación exitosa", "success");
                         resolve("✅ Autenticación exitosa");
                     } else {
-                        // Cierra el loading y muestra error
                         Swal.fire("Error", "❌ Usuario o contraseña incorrectos", "error");
                         reject("❌ Usuario o contraseña incorrectos");
                     }
