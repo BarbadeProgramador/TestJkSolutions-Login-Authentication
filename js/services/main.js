@@ -1,18 +1,30 @@
-import { Auth } from "./auth";
+import { Auth } from "./auth.js";
 
 
 
-function Login(){
+const form = document.getElementById("login-form");
 
-    let user = document.getElementById('username').value;
-    let passsword = document.getElementById('password').value;
 
-    let validation = Auth(user, passsword);
+form.addEventListener("submit", function(event) {
+    event.preventDefault(); 
 
-    if (validation) {
-        window.location.href = 'pages/landing.html';
-    } else {
-        alert('error');
-    }
+    let user = document.getElementById("usuario").value;
+    let password = document.getElementById("contraseña").value;
 
-}
+    Auth(user, password)
+    .then((response) => {  
+        alert(response);
+        window.location.href = "pages/landing.html";
+    }	)
+    .catch((error) => {
+        alert(error);
+    });
+
+    
+
+    // if (validation) {
+    //     window.location.href = "pages/landing.html";
+    // } else {
+    //     alert("Usuario o contraseña incorrectos");
+    // }
+});

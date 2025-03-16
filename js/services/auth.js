@@ -1,8 +1,8 @@
-import { localStorageService } from "./storage";
-import { dataValidation } from "./validation";
+import { localStorageService } from "./storage.js";
+import { dataValidation } from "./validation.js";
 
 // Users autorized
-const usersAutorized = { 'user': 'jkTest2025@gmail.com', 'passsword': 'test2025' };
+const usersAutorized = { 'user': 'jkTest2025@gmail.com', 'password': '1234567' };
 
 
 export function Auth(username , password) {
@@ -28,15 +28,20 @@ export function Auth(username , password) {
 
     // }
 
-    setTimeout (() => {
-        if (data_user === usersAutorized.user && data_passsword === usersAutorized.passsword) {
+    return new Promise((resolve, reject) =>{
 
-            localStorageService(user, passsword);
-            return true;
+        setTimeout (() => {
+            if (data_user === usersAutorized.user && data_passsword === usersAutorized.password) {
+    
+                localStorageService(data_user, data_passsword);
+                resolve("✅ Autenticación exitosa");
+    
+            } else {
+                reject("❌ Usuario o contraseña incorrectos");
+            }
+        }, 5000);
 
-        } else {
-            return false;
-        }
-    }, 5000);
+    });
+
 }
 
