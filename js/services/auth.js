@@ -1,47 +1,28 @@
 import { localStorageService } from "./storage.js";
 import { dataValidation } from "./validation.js";
 
-// Users autorized
-const usersAutorized = { 'user': 'jkTest2025@gmail.com', 'password': '1234567' };
+// Users autorizados
+const usersAutorized = { user: "jkTest2025@gmail.com", password: "1234567" };
 
+export async function Auth(username, password) {
+    try {
+        // Validar la contraseña
+        await dataValidation(password);
 
-export function Auth(username , password) {
+        // Retornar una nueva promesa con un setTimeout
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (username === usersAutorized.user && password === usersAutorized.password) {
+                    localStorageService(username, password);
+                    resolve("✅ Autenticación exitosa");
+                } else {
+                    reject("❌ Usuario o contraseña incorrectos");
+                }
+            }, 5000);
+        });
 
-    let data_user = username;
-    let data_passsword = password;
-
-    // let validation = dataValidation(data_passsword);
-
-
-    // switch(validation){
-    //     case "contraseña obligatoria":
-
-    //     break;
-
-    //     case "contraseña obligatoria":
-
-    //     break;
-
-    //     case "contraseña valida":
-        
-    //     break
-
-    // }
-
-    return new Promise((resolve, reject) =>{
-
-        setTimeout (() => {
-            if (data_user === usersAutorized.user && data_passsword === usersAutorized.password) {
-    
-                localStorageService(data_user, data_passsword);
-                resolve("✅ Autenticación exitosa");
-    
-            } else {
-                reject("❌ Usuario o contraseña incorrectos");
-            }
-        }, 5000);
-
-    });
-
+    } catch (error) {
+        console.error(error);
+        return Promise.reject(error); // ❗ Esto permite manejar el error correctamente
+    }
 }
-
