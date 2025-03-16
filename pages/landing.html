@@ -1,23 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LadingSesion</title>
+    <title>Landing Sesión</title>
 </head>
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="#">Sesion</a></li>
-                <li><a href="#">CerrarSesion</a></li>
+                <li><a href="#">Sesión</a></li>
+                <li><button id="logoutButton">Cerrar Sesión</button></li>
             </ul>
         </nav>
     </header>
 
     <div>
-        <h1>Bienvenido Juan</h1>
+        <h1>Bienvenido a la plataforma</h1>
     </div>
+
+    <script type="module">
+        import { checkAuth, logout } from "../js/services/storage.js";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            checkAuth(); 
+            window.logout = logout; // Hacer logout accesible desde HTML
+
+
+            document.getElementById("logoutButton").addEventListener("click", logout);
+        });
+    </script>
 </body>
-<script ></script>
 </html>

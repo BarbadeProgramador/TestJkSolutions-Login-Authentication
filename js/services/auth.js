@@ -6,10 +6,10 @@ const usersAutorized = { user: "jkTest2025@gmail.com", password: "1234567" };
 
 export async function Auth(username, password) {
     try {
-        // Validar la contraseña
-        await dataValidation(password);
+        // Validacion de datos 
+        await dataValidation(username ,password);
 
-        // Retornar una nueva promesa con un setTimeout
+        // Simulacion de una peticion de autenticacion
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 if (username === usersAutorized.user && password === usersAutorized.password) {
@@ -23,6 +23,6 @@ export async function Auth(username, password) {
 
     } catch (error) {
         console.error(error);
-        return Promise.reject(error); // ❗ Esto permite manejar el error correctamente
+        return Promise.reject(error); 
     }
 }

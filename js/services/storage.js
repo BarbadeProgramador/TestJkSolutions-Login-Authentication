@@ -17,31 +17,32 @@ export function localStorageService(user, passsword) {
 
 // SECTION VALIDATION ACCESS SERVICE 
 
-function checkAuth() {
+export function checkAuth() {
 
-    const session = localStorage.getItem('session');
+        const session = localStorage.getItem('session');
 
-    if (!session) {
-        redirectLogin()
-        return;
-    }
+        console.log("validando auth");
+        if (!session) {
+            redirectLogin()
+            return;
+        }
 
-    const { user, token } = JSON.parse(session);
+        const { user, token } = JSON.parse(session);
 
-    if (!user || new Date().getTime() > token) {
-        alert("Sesión expirada. Redirigiendo...");
-        localStorage.removeItem("session");
-        redirectLogin();
-        return;
-    }
+        if (!user || new Date().getTime() > token) {
+            alert("Sesión expirada. Redirigiendo...");
+            localStorage.removeItem("session");
+            redirectLogin();
+            return;
+        }
 
-}
+    };
 
 
 
 // SECTION LOGOUT SERVICE
 
-function logout () {
+export function logout() {
 
     localStorage.removeItem("session");
     redirectLogin();
@@ -51,5 +52,5 @@ function logout () {
 
 //REDIRECT LOGIN 
 function redirectLogin(){
-    window.location.href = "login.html";
+    window.location.href = "../index.html";
 }
