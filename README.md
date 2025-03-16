@@ -1,5 +1,5 @@
+# Login - Auth - Persistence 
 <p align="center">
-  # Login - Auth - Persistence 
   <img src="https://github.com/user-attachments/assets/8612867d-93d5-46e1-b6ea-dd528fc31107" width="400">
 </p>
 
