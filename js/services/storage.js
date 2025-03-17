@@ -15,27 +15,20 @@ export function localStorageService(user, passsword) {
 
 
 
-// SECTION VALIDATION ACCESS SERVICE 
+// SECTION VALIDATION ACCESS - PERSISTENCE SERVICE 
 
 export function checkAuth() {
-
+        // Get object LocalStorage Active
         const session = localStorage.getItem('session');
 
-        console.log("validando auth");
+        console.log("validando auth ...");
+
         if (!session) {
             redirectLogin()
             return;
+        }else{
+            console.log("sesion Activa");
         }
-
-        const { user, token } = JSON.parse(session);
-
-        if (!user || new Date().getTime() > token) {
-            alert("Sesión expirada. Redirigiendo...");
-            localStorage.removeItem("session");
-            redirectLogin();
-            return;
-        }
-
     };
 
 
