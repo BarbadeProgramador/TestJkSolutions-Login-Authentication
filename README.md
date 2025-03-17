@@ -4,7 +4,7 @@
 </p>
 
 ## Sobre el Proyecto  
-Prueba técnica de login con persistencia de datos utilizando `localStorage` y simulando la respuesta de una api usando `setTimeout` .
+Prueba técnica Jkt - login con persistencia de datos utilizando `localStorage` y simulando la respuesta de una api usando `setTimeout` .
 
 ## Tecnologías  
 <p align="center">
